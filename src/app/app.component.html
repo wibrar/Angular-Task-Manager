@@ -40,7 +40,7 @@
     <ul id="users">
         <li>
             <app-tasks
-            [name]="selectedUser?.name"
+            [name]="selectedUser ? selectedUser.name : ''"
             />
         </li>
     </ul>
