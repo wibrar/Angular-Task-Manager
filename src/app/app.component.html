@@ -1,39 +1,18 @@
 <app-header/>
 <main>
     <ul id="users">
-        <li>
-            <app-user 
-            [user]="users[0]" 
-            (select)="onSelectUser($event)"
-            />
-        </li>
-        <li>
-            <app-user             
-            [user]="users[1]" 
-            (select)="onSelectUser($event)"
-
-            />
-        </li>
-        <li>
-            <app-user             
-            [user]="users[2]" 
-            (select)="onSelectUser($event)"
-
-            />
-        </li>
-        <li>
-            <app-user            
-            [user]="users[3]" 
-            (select)="onSelectUser($event)"
-
-            />
-        </li>
+        @for (user of users; track user.id) {
+            <li>
+                <app-user 
+                [user]="user" 
+                (select)="onSelectUser($event)"
+                />
+            </li>
+        }
     </ul>
-    <ul id="users">
-        <li>
-            <app-tasks
-            [name]="selectedUser ? selectedUser.name : ''"
-            />
-        </li>
-    </ul>
+    @if (selectedUser) {
+        <app-tasks [name]="selectedUser.name"/>
+    } @else {
+        <p id="fallback">Select a user to see the Tasks</p>
+    }
 </main>

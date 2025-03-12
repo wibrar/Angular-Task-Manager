@@ -1,7 +1,12 @@
 import { Component, computed, signal, Input, Output, EventEmitter, output } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
-type User = {
+// type User = {
+//   id: string;
+//   name: string;
+//   avatar: string;
+// }
+interface User {
   id: string;
   name: string;
   avatar: string;
@@ -23,7 +28,6 @@ export class UserComponent {
     return 'assets/users/' + this.user.avatar;
   }
   
-
   onSelectUser() {
     this.select.emit(this.user.id);
   }
