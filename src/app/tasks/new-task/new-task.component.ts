@@ -1,28 +1,29 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { type NewTaskdData } from '../task/task.model';
 
 @Component({
   selector: 'app-new-task',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './new-task.component.html',
   styleUrl: './new-task.component.css'
 })
 export class NewTaskComponent {
   @Output() cancel = new EventEmitter<void>();
+  @Output() add = new EventEmitter<NewTaskdData>();
 
+  enteredTitle = '';
+  enteredSummary = '';
+  enteredDate = '';
+  
   onCancelAddTask(){
     return this.cancel.emit();
   }
-
-  newtask = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary: 'Learn all the basic and advanced features of Angular & how to apply them.',
-      dueDate: '2025-12-31'
-
+  onSubmit(){
+    this.add.emit({
+      title: this.enteredTitle, summary: this.enteredSummary, date: this.enteredDate,
+    });
   }
-]
 
 }
